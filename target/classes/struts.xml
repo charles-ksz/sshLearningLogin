@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.devMode" value="false"/>
+    <constant name="struts.objectFactory" value="spring" />
+
+    <package name="user" namespace="/" extends="struts-default">
+
+        <action name="user_*" class="User_" method="{1}">
+            <result name="success">/success.jsp</result>
+            <result name="get">/showUser.jsp</result>
+            <result name="editUser" >/editUser.jsp</result>
+            <result name="listUser">/userList.jsp</result>
+            <result name="listUserAction" type="chain">user_list</result>
+            <result name="manager">successManage.jsp</result>
+            <result name="error">/error.jsp</result>
+
+            <result name="recompensateAction">recompensate.jsp</result>
+        </action>
+
+        <action name="register" class="userRegisterAction" method="register">
+            <result name="success" >/index.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+
+        <action name="*Book" class="BookAction" method="{1}">
+            <result name="success">showBookResult.jsp</result>
+            <result name ="listBook" >showBookResult.jsp</result>
+            <result name="listBookAction" type="chain">listBook</result>
+
+             <result name="mListBook">bookList.jsp</result>
+        </action>
+
+        <action name="borrowBookAction" class="bookBorrowAction" method="borrow">
+            <result name="success">
+               success.jsp
+            </result>
+            <result name="error">error.jsp</result>
+            <result name="operate">showBookResult.jsp</result>
+        </action>
+
+        <action name="reBorrowBook" class="bookBorrowAction" method="reBorrowBook">
+            <result name="operate">showBookResult.jsp</result>
+        </action>
+
+        <action name="bookBackAction" class="bookBackAction" method="backBook1">
+            <result name="success">
+                success.jsp
+            </result>
+            <result name="error">
+                error.jsp
+            </result>
+        </action>
+
+        <action name="compensate" class="bookBorrowAction" method="compensate">
+            <result name="compensate">successManage.jsp</result>
+            <result name="compensate1">successManage.jsp</result>
+        </action>
+
+        <action name="manager_*" class="manager_" method="{1}">
+            <result name="success" >successManage.jsp</result>
+            <result name="error">error.jsp</result>
+            <result name="update">successManage.jsp</result>
+            <result name="edit">editManager.jsp</result>
+        </action>
+
+    </package>
+</struts>
